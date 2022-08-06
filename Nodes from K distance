@@ -1,0 +1,55 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    Node(int val)
+    {
+        data=val;
+        left=right=NULL;
+    }
+};
+void preorder(Node *root)
+{
+    if(root!=NULL)
+    {
+        cout<<root->data<<" ";
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+void KdistNode(Node *root,int k)
+{   if(root ==NULL) return;
+    if(k==0)
+    {
+        cout<<root->data<<" ";
+    }
+    else
+    {
+      KdistNode(root->left,k-1);
+      KdistNode(root->right,k-1);
+   }
+}
+
+int main() {
+    Node *root =new Node(1);
+    root->left =new Node(2);
+    root->right =new Node(3);
+    root->right->left =new Node(4);
+    root->right->right=new Node(5);
+    cout<<"the preorder is \n";
+    preorder(root);
+    cout<<"\n the K distance Nodes are \n";
+    KdistNode(root,2);
+    
+}
+
+
+o/p
+the preorder is 
+1 2 3 4 5 
+ the K distance Nodes are 
+4 5 
